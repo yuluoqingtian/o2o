@@ -11,7 +11,7 @@ public class FoodType {
     private String imageUrl;
     private String iconUrl;
     private String titleColor;
-    private String _v;
+    private String V;
 
     public Integer getTypeId() {
         return typeId;
@@ -77,12 +77,12 @@ public class FoodType {
         this.titleColor = titleColor;
     }
 
-    public String get_v() {
-        return _v;
+    public String getV() {
+        return V;
     }
 
-    public void set_v(String _v) {
-        this._v = _v;
+    public void setV(String V) {
+        this.V = V;
     }
 
     @Override
@@ -96,7 +96,7 @@ public class FoodType {
                 ", imageUrl='" + imageUrl + '\'' +
                 ", iconUrl='" + iconUrl + '\'' +
                 ", titleColor='" + titleColor + '\'' +
-                ", _v='" + _v + '\'' +
+                ", V='" + V + '\'' +
                 '}';
     }
 }
