@@ -3,7 +3,6 @@ package com.bill.o2o.web.user;
 
 import com.bill.o2o.entity.FoodType;
 import com.bill.o2o.service.FoodTypeService;
-import jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,13 +33,11 @@ public class FoodTypeController {
 
         } catch (Exception e) {
             resultMap.put("code","1");
+            resultMap.put("message","查询失败");
             resultMap.put("error",e.getMessage());
 
         }
-
         return resultMap;
-
-
     }
 
 
