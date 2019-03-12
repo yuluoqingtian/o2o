@@ -5,7 +5,7 @@ package com.bill.o2o.entity;
 public class FoodType {
     private Integer typeId;
     private Integer isInServing;
-    private String description;
+    private String typeDescription;
     private String title;
     private String link;
     private String imageUrl;
@@ -29,12 +29,12 @@ public class FoodType {
         this.isInServing = isInServing;
     }
 
-    public String getDescription() {
-        return description;
+    public String getTypeDescription() {
+        return typeDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setTypeDescription(String typeDescription) {
+        this.typeDescription = typeDescription;
     }
 
     public String getTitle() {
@@ -90,7 +90,7 @@ public class FoodType {
         return "FoodType{" +
                 "typeId=" + typeId +
                 ", isInServing=" + isInServing +
-                ", description='" + description + '\'' +
+                ", description='" + typeDescription + '\'' +
                 ", title='" + title + '\'' +
                 ", link='" + link + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +

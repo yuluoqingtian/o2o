@@ -4,33 +4,65 @@
         "http://mybatis.org.dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bill.o2o.dao.ShopDao">
-    <insert id="insertShop" useGeneratedKeys="true" keyColumn="shop_id" keyProperty="shopId">
-        INSERT INTO
-        tb_shop(owner_id,area_id,shop_category_id,shop_name,shop_desc,
-        shop_addr,phone,shop_img,priority,create_time,last_edit_time,enable_status,
-        advice)
-        VALUES
-        (#{owner.userId},#{area.areaId},#{shopCategory.shopCategoryId},#{shopName},
-        #{shopDesc},#{shopAddr},#{phone},#{shopImg},#{priority},#{createTime},
-        #{lastEditTime},#{enableStatus},#{advice})
-    </insert>
 
-    <!--这里用到了mybatis的动态sql语句，满足if标签中的条件，才会对相应的值做更新-->
-    <update id="updateShop" parameterType="com.bill.o2o.entity.Shop">
-        UPDATE tb_shop
-       <set>
-           <if test="shopName != null">shop_name=#{shopName},</if>
-           <if test="shopDesc != null">shop_desc=#{shopDesc},</if>
-           <if test="shopAddr != null">shop_addr=#{shopAddr},</if>
-           <if test="phone != null">phone=#{phone},</if>
-           <if test="shopImg != null">shop_img=#{shopImg},</if>
-           <if test="priority != null">priority=#{priority},</if>
-           <if test="lastEditTime != null">last_edit_time=#{lastEditTime},</if>
-           <if test="enableStatus != null">enable_status=#{enableStatus},</if>
-           <if test="advice != null">advice=#{advice},</if>
-           <if test="area != null">area_id=#{area.areaId},</if>
-           <if test="shopCategory != null">shop_category=#{shopCategory.shopCategoryId}</if>
-       </set>
-        where shop_id = #{shopId}
-    </update>
+
+    <resultMap id="shopResultMap" type="com.bill.o2o.dto.ShopReturnData" autoMapping="true">
+        <id column="shop_id" property="shopId"/>
+        <result column="delivery_mode_id" property="deliverModeId"/>
+        <association property="shopType" javaType="com.bill.o2o.entity.FoodType" autoMapping="true">
+        </association>
+
+        <association property="deliveryMode" javaType="com.bill.o2o.entity.DeliveryMode" autoMapping="true">
+
+        </association>
+
+
+        <collection property="activities" ofType="com.bill.o2o.entity.Activity"  autoMapping="true">
+        </collection>
+
+        <collection property="supports" ofType="com.bill.o2o.entity.Support">
+            <id property="supportId" column="support_id"/>
+            <result property="supportIconColor" column="support_icon_color"/>
+            <result property="supportIconName" column="support_icon_name"/>
+            <result property="supportDescription" column="support_description"/>
+            <result property="supportName" column="support_name"/>
+        </collection>
+    </resultMap>
+
+
+    <select id="queryShopByLocation" resultMap="shopResultMap">
+        select * from o2o.tb_shop s
+        LEFT JOIN o2o.tb_shop_type st ON s.type_id = st.type_id
+        LEFT JOIN o2o.tb_delivery_mode td on s.delivery_mode_id = td.delivery_mode_id
+        LEFT JOIN o2o.tb_activity a ON s.shop_id = a.shop_id
+        LEFT JOIN o2o.tb_shop_support ss ON s.shop_id = ss.shop_id
+        LEFT JOIN o2o.tb_support su ON ss.support_id = su.support_id
+        where s.latitude = #{latitude}
+        and s.longitude = #{longitude}
+    </select>
+
+
+
+    <select id="queryShopByLocationAndKeyWords" resultMap="shopResultMap">
+        select * from o2o.tb_shop s
+        LEFT JOIN o2o.tb_shop_type st ON s.type_id = st.type_id
+        LEFT JOIN o2o.tb_delivery_mode td on s.delivery_mode_id = td.delivery_mode_id
+        LEFT JOIN o2o.tb_activity a ON s.shop_id = a.shop_id
+        LEFT JOIN o2o.tb_shop_support ss ON s.shop_id = ss.shop_id
+        LEFT JOIN o2o.tb_support su ON ss.support_id = su.support_id
+        where s.latitude = #{latitude}
+        and s.longitude = #{longitude}
+        and s.name like "%"#{keyWords}"%"
+    </select>
+
+    <select id="qureyShopByKeyword" resultMap="shopResultMap">
+        select * from o2o.tb_shop s
+        LEFT JOIN o2o.tb_shop_type st ON s.type_id = st.type_id
+        LEFT JOIN o2o.tb_delivery_mode td on s.delivery_mode_id = td.delivery_mode_id
+        LEFT JOIN o2o.tb_activity a ON s.shop_id = a.shop_id
+        LEFT JOIN o2o.tb_shop_support ss ON s.shop_id = ss.shop_id
+        LEFT JOIN o2o.tb_support su ON ss.support_id = su.support_id
+        where s.name like "%"#{keyword}"%"
+    </select>
+
 </mapper>

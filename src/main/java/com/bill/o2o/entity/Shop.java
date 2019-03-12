@@ -1,27 +1,74 @@
 package com.bill.o2o.entity;
 
-import java.util.Date;
+
 
 public class Shop {
     private Long shopId;
-    private String shopName;
-    private String shopDesc;
-    private String shopAddr;
+    private String name;
+    private String address;
+    private String latitude;
+    private String longitude;
     private String phone;
-    private String shopImg;
-    private Integer priority;
-    private Date createTime;
-    private Date lastEditTime;
+    private Long typeId;
+    private Integer status;
+    private Integer recentOrderNum;
+    private Integer ratingCount;
+    private Integer rating;
+    private String promotionInfo;
+    private String cateringServiceLicenseImage;
+    private String openingHours;
+    private String piecewiseAgentFee;
+    private String businessLicenseImage;
+    private Integer isNew;
+    private Integer isPremium;
+    private String imagePath;
+    private Long identificationId;
 
-    //  -1不可用；0审核中；1可用
-    private Integer enableStatus;
+    @Override
+    public String toString() {
+        return "Shop{" +
+                "shopId=" + shopId +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", longitude='" + longitude + '\'' +
+                ", phone='" + phone + '\'' +
+                ", typeId=" + typeId +
+                ", status=" + status +
+                ", recentOrderNum=" + recentOrderNum +
+                ", ratingCount=" + ratingCount +
+                ", rating=" + rating +
+                ", promotionInfo='" + promotionInfo + '\'' +
+                ", cateringServiceLicenseImage='" + cateringServiceLicenseImage + '\'' +
+                ", openingHours='" + openingHours + '\'' +
+                ", piecewiseAgentFee='" + piecewiseAgentFee + '\'' +
+                ", businessLicenseImage='" + businessLicenseImage + '\'' +
+                ", isNew=" + isNew +
+                ", isPremium=" + isPremium +
+                ", imagePath='" + imagePath + '\'' +
+                ", identificationId=" + identificationId +
+                ", floatDeliveryFee='" + floatDeliveryFee + '\'' +
+                ", description='" + description + '\'' +
+                ", deliverModeId=" + deliverModeId +
+                ", deliverTime='" + deliverTime + '\'' +
+                ", score='" + score + '\'' +
+                ", foodScore='" + foodScore + '\'' +
+                ", ServiceScore='" + ServiceScore + '\'' +
+                ", rankRate='" + rankRate + '\'' +
+                ", distance=" + distance +
+                '}';
+    }
 
-    //  超级管理员给店家提醒
-    private String advice;
+    private String floatDeliveryFee;
+    private String description;
+    private Long deliverModeId;
+    private String deliverTime;
+    private String score;
+    private String foodScore;
+    private String ServiceScore;
+    private String rankRate;
+    private Float distance;
 
-    private Area area;
-    private PersonInfo owner;
-    private ShopCategory shopCategory;
 
     public Long getShopId() {
         return shopId;
@@ -31,28 +78,36 @@ public class Shop {
         this.shopId = shopId;
     }
 
-    public String getShopName() {
-        return shopName;
+    public String getName() {
+        return name;
     }
 
-    public void setShopName(String shopName) {
-        this.shopName = shopName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getShopDesc() {
-        return shopDesc;
+    public String getAddress() {
+        return address;
     }
 
-    public void setShopDesc(String shopDesc) {
-        this.shopDesc = shopDesc;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getShopAddr() {
-        return shopAddr;
+    public String getLatitude() {
+        return latitude;
     }
 
-    public void setShopAddr(String shopAddr) {
-        this.shopAddr = shopAddr;
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
     public String getPhone() {
@@ -63,95 +118,187 @@ public class Shop {
         this.phone = phone;
     }
 
-    public String getShopImg() {
-        return shopImg;
+    public Long getTypeId() {
+        return typeId;
     }
 
-    public void setShopImg(String shopImg) {
-        this.shopImg = shopImg;
+    public void setTypeId(Long typeId) {
+        this.typeId = typeId;
     }
 
-    public Integer getPriority() {
-        return priority;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setPriority(Integer priority) {
-        this.priority = priority;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Integer getRecentOrderNum() {
+        return recentOrderNum;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setRecentOrderNum(Integer recentOrderNum) {
+        this.recentOrderNum = recentOrderNum;
     }
 
-    public Date getLastEditTime() {
-        return lastEditTime;
+    public Integer getRatingCount() {
+        return ratingCount;
     }
 
-    public void setLastEditTime(Date lastEditTime) {
-        this.lastEditTime = lastEditTime;
+    public void setRatingCount(Integer ratingCount) {
+        this.ratingCount = ratingCount;
     }
 
-    public Integer getEnableStatus() {
-        return enableStatus;
+    public Integer getRating() {
+        return rating;
     }
 
-    public void setEnableStatus(Integer enableStatus) {
-        this.enableStatus = enableStatus;
+    public void setRating(Integer rating) {
+        this.rating = rating;
     }
 
-    public String getAdvice() {
-        return advice;
+    public String getPromotionInfo() {
+        return promotionInfo;
     }
 
-    public void setAdvice(String advice) {
-        this.advice = advice;
+    public void setPromotionInfo(String promotionInfo) {
+        this.promotionInfo = promotionInfo;
     }
 
-    public Area getArea() {
-        return area;
+    public String getCateringServiceLicenseImage() {
+        return cateringServiceLicenseImage;
     }
 
-    public void setArea(Area area) {
-        this.area = area;
+    public void setCateringServiceLicenseImage(String cateringServiceLicenseImage) {
+        this.cateringServiceLicenseImage = cateringServiceLicenseImage;
     }
 
-    public PersonInfo getOwner() {
-        return owner;
+    public String getOpeningHours() {
+        return openingHours;
     }
 
-    public void setOwner(PersonInfo owner) {
-        this.owner = owner;
+    public void setOpeningHours(String openingHours) {
+        this.openingHours = openingHours;
     }
 
-    public ShopCategory getShopCategory() {
-        return shopCategory;
+    public String getPiecewiseAgentFee() {
+        return piecewiseAgentFee;
     }
 
-    public void setShopCategory(ShopCategory shopCategory) {
-        this.shopCategory = shopCategory;
+    public void setPiecewiseAgentFee(String piecewiseAgentFee) {
+        this.piecewiseAgentFee = piecewiseAgentFee;
     }
 
-    @Override
-    public String toString() {
-        return "Shop{" +
-                "shopId=" + shopId +
-                ", shopName='" + shopName + '\'' +
-                ", shopDesc='" + shopDesc + '\'' +
-                ", shopAddr='" + shopAddr + '\'' +
-                ", phone='" + phone + '\'' +
-                ", shopImg='" + shopImg + '\'' +
-                ", priority=" + priority +
-                ", createTime=" + createTime +
-                ", lastEditTime=" + lastEditTime +
-                ", enableStatus=" + enableStatus +
-                ", advice='" + advice + '\'' +
-                ", area=" + area +
-                ", owner=" + owner +
-                ", shopCategory=" + shopCategory +
-                '}';
+    public String getBusinessLicenseImage() {
+        return businessLicenseImage;
+    }
+
+    public void setBusinessLicenseImage(String businessLicenseImage) {
+        this.businessLicenseImage = businessLicenseImage;
+    }
+
+    public Integer getIsNew() {
+        return isNew;
+    }
+
+    public void setIsNew(Integer isNew) {
+        this.isNew = isNew;
+    }
+
+    public Integer getIsPremium() {
+        return isPremium;
+    }
+
+    public void setIsPremium(Integer isPremium) {
+        this.isPremium = isPremium;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public Long getIdentificationId() {
+        return identificationId;
+    }
+
+    public void setIdentificationId(Long identificationId) {
+        this.identificationId = identificationId;
+    }
+
+    public String getFloatDeliveryFee() {
+        return floatDeliveryFee;
+    }
+
+    public void setFloatDeliveryFee(String floatDeliveryFee) {
+        this.floatDeliveryFee = floatDeliveryFee;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Long getDeliverModeId() {
+        return deliverModeId;
+    }
+
+    public void setDeliverModeId(Long deliverModeId) {
+        this.deliverModeId = deliverModeId;
+    }
+
+    public String getDeliverTime() {
+        return deliverTime;
+    }
+
+    public void setDeliverTime(String deliverTime) {
+        this.deliverTime = deliverTime;
+    }
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
+    }
+
+    public String getFoodScore() {
+        return foodScore;
+    }
+
+    public void setFoodScore(String foodScore) {
+        this.foodScore = foodScore;
+    }
+
+    public String getServiceScore() {
+        return ServiceScore;
+    }
+
+    public void setServiceScore(String serviceScore) {
+        ServiceScore = serviceScore;
+    }
+
+    public String getRankRate() {
+        return rankRate;
+    }
+
+    public void setRankRate(String rankRate) {
+        this.rankRate = rankRate;
+    }
+
+    public Float getDistance() {
+        return distance;
+    }
+
+    public void setDistance(Float distance) {
+        this.distance = distance;
     }
 }

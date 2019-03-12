@@ -1,21 +1,19 @@
 package com.bill.o2o.dao;
 
+import com.bill.o2o.dto.ShopReturnData;
 import com.bill.o2o.entity.Shop;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ShopDao {
+    List<ShopReturnData> queryShopByLocation(@Param("latitude")String latitude,
+                                             @Param("longitude")String longitude);
 
-    /**
-     * 新增店铺
-     * @param shop
-     * @return
-     */
-    int insertShop(Shop shop);
 
-    /**
-     * 更新店铺信息
-     * @param shop
-     * @return
-     */
-    int updateShop(Shop shop);
+    List<ShopReturnData> queryShopByLocationAndKeyWords (@Param("latitude")String latitude,
+                                                         @Param("longitude")String longitude,
+                                                         @Param("keyWords")String keyWords);
 
+    List<ShopReturnData> qureyShopByKeyword(@Param("keyword")String keyword);
 }

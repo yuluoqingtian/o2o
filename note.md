@@ -85,4 +85,13 @@ spring-web.xml
     - logger：主要用于存放日志对象，定义日志的类型、级别
     - appender：主要用于指定日志输出的目的地，可以是控制台，文件等
     - layout：用来格式化日志输出
+ 
+ 
+### 3、mybatis复杂查询的方法，一对多，一对一，多对多，一对多再对多
+
+    1. mapper中的resulttype可以自定义查询返回的类型，可以包括其他的类(表)，和其他类（表）的集合。
+    2. resultMap 中 <result/> 标签中的 property 和 colum 可以将数据库表的列名映射到实体类的属性名上面
+    3. resultMap的级联：**待完善**
+    4. 若想在级联中的collection中映射，实体类需实现Serializable接口，并具有相应的getter，setter
+    5. 联级查询中的同名问题
     

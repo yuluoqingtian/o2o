@@ -918,654 +918,881 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="232" parent="6" name="tb_area">
+    <table id="232" parent="6" name="tb_activity">
       <Engine>InnoDB</Engine>
     </table>
-    <table id="233" parent="6" name="tb_head_line">
+    <table id="233" parent="6" name="tb_category_under_shop">
       <Engine>InnoDB</Engine>
     </table>
-    <table id="234" parent="6" name="tb_local_auth">
+    <table id="234" parent="6" name="tb_comment">
       <Engine>InnoDB</Engine>
     </table>
-    <table id="235" parent="6" name="tb_person_info">
+    <table id="235" parent="6" name="tb_delivery_mode">
       <Engine>InnoDB</Engine>
     </table>
-    <table id="236" parent="6" name="tb_product">
+    <table id="236" parent="6" name="tb_food">
       <Engine>InnoDB</Engine>
     </table>
-    <table id="237" parent="6" name="tb_product_category">
+    <table id="237" parent="6" name="tb_identification">
+      <Comment>记录店铺相关证明的表</Comment>
       <Engine>InnoDB</Engine>
     </table>
-    <table id="238" parent="6" name="tb_product_img">
+    <table id="238" parent="6" name="tb_shop">
       <Engine>InnoDB</Engine>
     </table>
-    <table id="239" parent="6" name="tb_shop">
+    <table id="239" parent="6" name="tb_shop_comment">
+      <Comment>记录用户对商铺的评论</Comment>
       <Engine>InnoDB</Engine>
     </table>
-    <table id="240" parent="6" name="tb_shop_category">
+    <table id="240" parent="6" name="tb_shop_support">
+      <Comment>记录商店和提供服务之间的关系，是一张关系表</Comment>
       <Engine>InnoDB</Engine>
     </table>
-    <table id="241" parent="6" name="tb_wechat_auth">
+    <table id="241" parent="6" name="tb_shop_type">
       <Engine>InnoDB</Engine>
     </table>
-    <column id="242" parent="232" name="area_id">
+    <table id="242" parent="6" name="tb_support">
+      <Comment>商店能够提供的服务</Comment>
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="243" parent="6" name="tb_user">
+      <Engine>InnoDB</Engine>
+    </table>
+    <column id="244" parent="232" name="tb_activity_id">
       <Position>1</Position>
-      <DataType>int(2)|0</DataType>
+      <DataType>int(10)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="243" parent="232" name="area_name">
+    <column id="245" parent="232" name="shop_id">
       <Position>2</Position>
-      <DataType>varchar(200)|0</DataType>
-      <NotNull>1</NotNull>
+      <DataType>int(10)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="244" parent="232" name="priority">
+    <column id="246" parent="232" name="icon_name">
       <Position>3</Position>
-      <DataType>int(2)|0</DataType>
+      <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <DefaultExpression>&apos;减&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="245" parent="232" name="create_time">
+    <column id="247" parent="232" name="name">
       <Position>4</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;满减优惠&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="246" parent="232" name="last_edit_time">
+    <column id="248" parent="232" name="description">
       <Position>5</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>varchar(1024)|0</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="247" parent="232" name="UK_AREA">
-      <ColNames>area_name</ColNames>
-      <Unique>1</Unique>
+    <column id="249" parent="232" name="icon_color">
+      <Position>6</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;f07373&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="250" parent="232" name="_id">
+      <Position>7</Position>
+      <DataType>varchar(1024)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="251" parent="232" name="fk_shop_id_idx">
+      <ColNames>shop_id</ColNames>
     </index>
-    <key id="248" parent="232" name="PRIMARY">
+    <key id="252" parent="232" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>area_id</ColNames>
+      <ColNames>tb_activity_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="249" parent="232" name="UK_AREA">
-      <ColNames>area_name</ColNames>
-      <UnderlyingIndexName>UK_AREA</UnderlyingIndexName>
+    <foreign-key id="253" parent="232" name="fk_activity_shop_id">
+      <ColNames>shop_id</ColNames>
+      <RefSchemaName>o2o</RefSchemaName>
+      <RefTableName>tb_shop</RefTableName>
+      <RefColNames>shop_id</RefColNames>
+    </foreign-key>
+    <column id="254" parent="233" name="category_id">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="255" parent="233" name="shop_id">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="256" parent="233" name="name">
+      <Position>3</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="257" parent="233" name="icon_color">
+      <Position>4</Position>
+      <DataType>varchar(45)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="258" parent="233" name="icon_name">
+      <Position>5</Position>
+      <DataType>varchar(45)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="259" parent="233" name="fk_shop_id_idx">
+      <ColNames>shop_id</ColNames>
+    </index>
+    <key id="260" parent="233" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>category_id</ColNames>
+      <Primary>1</Primary>
     </key>
-    <column id="250" parent="233" name="line_id">
+    <foreign-key id="261" parent="233" name="fk_category_shop_id">
+      <ColNames>shop_id</ColNames>
+      <RefSchemaName>o2o</RefSchemaName>
+      <RefTableName>tb_shop</RefTableName>
+      <RefColNames>shop_id</RefColNames>
+    </foreign-key>
+    <column id="262" parent="234" name="comment_id">
       <Position>1</Position>
       <DataType>int(100)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="251" parent="233" name="line_name">
-      <Position>2</Position>
-      <DataType>varchar(1000)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="252" parent="233" name="line_link">
-      <Position>3</Position>
-      <DataType>varchar(2000)|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="253" parent="233" name="line_img">
-      <Position>4</Position>
-      <DataType>varchar(2000)|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="254" parent="233" name="priority">
-      <Position>5</Position>
-      <DataType>int(2)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="255" parent="233" name="enable_status">
-      <Position>6</Position>
-      <DataType>int(2)|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="256" parent="233" name="create_time">
-      <Position>7</Position>
-      <DataType>datetime|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="257" parent="233" name="last_edit_time">
-      <Position>8</Position>
-      <DataType>datetime|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="258" parent="233" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>line_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="259" parent="234" name="local_auth_id">
-      <Position>1</Position>
-      <DataType>int(10)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="260" parent="234" name="user_id">
+    <column id="263" parent="234" name="user_id">
       <Position>2</Position>
       <DataType>int(10)|0</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="261" parent="234" name="user_name">
+    <column id="264" parent="234" name="food_id">
       <Position>3</Position>
-      <DataType>varchar(128)|0</DataType>
-      <NotNull>1</NotNull>
+      <DataType>int(10)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="262" parent="234" name="password">
+    <column id="265" parent="234" name="content">
       <Position>4</Position>
-      <DataType>varchar(128)|0</DataType>
-      <NotNull>1</NotNull>
+      <DataType>varchar(1024)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="263" parent="234" name="create_time">
+    <column id="266" parent="234" name="time">
       <Position>5</Position>
       <DataType>datetime|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="264" parent="234" name="last_edit_time">
-      <Position>6</Position>
-      <DataType>datetime|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="265" parent="234" name="uk_local_profile">
-      <ColNames>user_name</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <index id="266" parent="234" name="fk_localauth_profile">
+    <index id="267" parent="234" name="fk_user_id_idx">
       <ColNames>user_id</ColNames>
     </index>
-    <key id="267" parent="234" name="PRIMARY">
+    <index id="268" parent="234" name="fk_food_id_idx">
+      <ColNames>food_id</ColNames>
+    </index>
+    <key id="269" parent="234" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>local_auth_id</ColNames>
+      <ColNames>comment_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="268" parent="234" name="uk_local_profile">
-      <ColNames>user_name</ColNames>
-      <UnderlyingIndexName>uk_local_profile</UnderlyingIndexName>
-    </key>
-    <foreign-key id="269" parent="234" name="fk_localauth_profile">
+    <foreign-key id="270" parent="234" name="fk_comment_user_id">
       <ColNames>user_id</ColNames>
       <RefSchemaName>o2o</RefSchemaName>
-      <RefTableName>tb_person_info</RefTableName>
+      <RefTableName>tb_user</RefTableName>
       <RefColNames>user_id</RefColNames>
     </foreign-key>
-    <column id="270" parent="235" name="user_id">
+    <foreign-key id="271" parent="234" name="fk_comment_food_id">
+      <ColNames>food_id</ColNames>
+      <RefSchemaName>o2o</RefSchemaName>
+      <RefTableName>tb_food</RefTableName>
+      <RefColNames>food_id</RefColNames>
+    </foreign-key>
+    <column id="272" parent="235" name="delivery_mode_id">
       <Position>1</Position>
       <DataType>int(10)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="271" parent="235" name="name">
+    <column id="273" parent="235" name="color">
       <Position>2</Position>
-      <DataType>varchar(32)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="272" parent="235" name="profile_img">
-      <Position>3</Position>
-      <DataType>varchar(1024)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="273" parent="235" name="email">
-      <Position>4</Position>
-      <DataType>varchar(1024)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="274" parent="235" name="gender">
-      <Position>5</Position>
-      <DataType>varchar(2)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="275" parent="235" name="enable_status">
-      <Position>6</Position>
-      <Comment>0：禁止使用本商城；1：允许使用本商城</Comment>
-      <DataType>int(2)|0</DataType>
+      <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <DefaultExpression>&apos;57A9FF&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="276" parent="235" name="user_type">
-      <Position>7</Position>
-      <Comment>1：顾客；2：商家；3：超级管理员</Comment>
-      <DataType>int(2)|0</DataType>
+    <column id="274" parent="235" name="is_solid">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="277" parent="235" name="create_time">
+    <column id="275" parent="235" name="text">
+      <Position>4</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;蜂鸟赚送&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="276" parent="235" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>delivery_mode_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="277" parent="236" name="food_id">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="278" parent="236" name="food_name">
+      <Position>2</Position>
+      <DataType>varchar(100)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="279" parent="236" name="taset">
+      <Position>3</Position>
+      <Comment>口味</Comment>
+      <DataType>varchar(45)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="280" parent="236" name="monthly_sales">
+      <Position>4</Position>
+      <Comment>月销量</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="281" parent="236" name="good_rate">
+      <Position>5</Position>
+      <Comment>好评率</Comment>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;100%&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="282" parent="236" name="description">
+      <Position>6</Position>
+      <DataType>varchar(1024)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="283" parent="236" name="image_path">
+      <Position>7</Position>
+      <DataType>varchar(1024)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="284" parent="236" name="price">
+      <Position>8</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0.00&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="285" parent="236" name="is_specialty">
+      <Position>9</Position>
+      <Comment>是不是招牌菜</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="286" parent="236" name="is_promoted">
+      <Position>10</Position>
+      <Comment>是不是老板推荐</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="287" parent="236" name="category_id">
+      <Position>11</Position>
+      <DataType>int(10)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="288" parent="236" name="info">
+      <Position>12</Position>
+      <DataType>varchar(1024)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="289" parent="236" name="old_price">
+      <Position>13</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0.00&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="290" parent="236" name="fk_category_id_idx">
+      <ColNames>category_id</ColNames>
+    </index>
+    <key id="291" parent="236" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>food_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="292" parent="236" name="fk_food_category_id">
+      <ColNames>category_id</ColNames>
+      <RefSchemaName>o2o</RefSchemaName>
+      <RefTableName>tb_category_under_shop</RefTableName>
+      <RefColNames>category_id</RefColNames>
+    </foreign-key>
+    <column id="293" parent="237" name="identification_id">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="294" parent="237" name="registered_address">
+      <Position>2</Position>
+      <DataType>varchar(1024)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="295" parent="237" name="operation_period">
+      <Position>3</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="296" parent="237" name="licenses_scope">
+      <Position>4</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="297" parent="237" name="licenses_number">
+      <Position>5</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="298" parent="237" name="licenses_date">
+      <Position>6</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="299" parent="237" name="legal_person">
+      <Position>7</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="300" parent="237" name="identification_date">
       <Position>8</Position>
       <DataType>datetime|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="278" parent="235" name="last_edit_time">
+    <column id="301" parent="237" name="identification_agency">
       <Position>9</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="279" parent="235" name="UK_AREA">
-      <ColNames>email</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="280" parent="235" name="PRIMARY">
+    <column id="302" parent="237" name="company_name">
+      <Position>10</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="303" parent="237" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>user_id</ColNames>
+      <ColNames>identification_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="281" parent="235" name="UK_AREA">
-      <ColNames>email</ColNames>
-      <UnderlyingIndexName>UK_AREA</UnderlyingIndexName>
+    <column id="304" parent="238" name="shop_id">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="305" parent="238" name="name">
+      <Position>2</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;默认店铺名&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="306" parent="238" name="address">
+      <Position>3</Position>
+      <DataType>varchar(1024)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="307" parent="238" name="latitude">
+      <Position>4</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;31.38098&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="308" parent="238" name="longitude">
+      <Position>5</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;121.50146&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="309" parent="238" name="phone">
+      <Position>6</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;默认联系电话&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="310" parent="238" name="type_id">
+      <Position>7</Position>
+      <DataType>int(10)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="311" parent="238" name="status">
+      <Position>8</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="312" parent="238" name="recent_order_num">
+      <Position>9</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="313" parent="238" name="rating_count">
+      <Position>10</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="314" parent="238" name="rating">
+      <Position>11</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="315" parent="238" name="promotion_info">
+      <Position>12</Position>
+      <DataType>varchar(1024)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;大吉大利，今晚吃鸡！&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="316" parent="238" name="catering_service_license_image">
+      <Position>13</Position>
+      <DataType>varchar(1024)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="317" parent="238" name="opening_hours">
+      <Position>14</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;8:30/20:30&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="318" parent="238" name="piecewise_agent_fee">
+      <Position>15</Position>
+      <DataType>varchar(1024)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="319" parent="238" name="business_license_image">
+      <Position>16</Position>
+      <DataType>varchar(1024)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="320" parent="238" name="is_new">
+      <Position>17</Position>
+      <Comment>0：false；
+1：true；</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="321" parent="238" name="is_premium">
+      <Position>18</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="322" parent="238" name="image_path">
+      <Position>19</Position>
+      <DataType>varchar(1024)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="323" parent="238" name="identification_id">
+      <Position>20</Position>
+      <DataType>int(10)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="324" parent="238" name="float_delivery_fee">
+      <Position>21</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0.00&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="325" parent="238" name="description">
+      <Position>22</Position>
+      <DataType>varchar(45)|0</DataType>
+      <DefaultExpression>&apos;好吃的&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="326" parent="238" name="delivery_mode_id">
+      <Position>23</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="327" parent="238" name="deliver_time">
+      <Position>24</Position>
+      <DataType>varchar(45)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="328" parent="238" name="score">
+      <Position>25</Position>
+      <DataType>varchar(45)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="329" parent="238" name="service_score">
+      <Position>26</Position>
+      <DataType>varchar(45)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="330" parent="238" name="food_score">
+      <Position>27</Position>
+      <DataType>varchar(45)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="331" parent="238" name="rank_rate">
+      <Position>28</Position>
+      <DataType>varchar(45)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="332" parent="238" name="distance">
+      <Position>29</Position>
+      <DataType>float|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="333" parent="238" name="fk_category_id_idx">
+      <ColNames>type_id</ColNames>
+    </index>
+    <index id="334" parent="238" name="fk_identification_idx">
+      <ColNames>identification_id</ColNames>
+    </index>
+    <index id="335" parent="238" name="fk_delivery_mode_idx">
+      <ColNames>delivery_mode_id</ColNames>
+    </index>
+    <key id="336" parent="238" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>shop_id</ColNames>
+      <Primary>1</Primary>
     </key>
-    <column id="282" parent="236" name="product_id">
+    <foreign-key id="337" parent="238" name="fk_shop_type_id">
+      <ColNames>type_id</ColNames>
+      <RefSchemaName>o2o</RefSchemaName>
+      <RefTableName>tb_shop_type</RefTableName>
+      <RefColNames>type_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="338" parent="238" name="fk_shop_identification">
+      <ColNames>identification_id</ColNames>
+      <RefSchemaName>o2o</RefSchemaName>
+      <RefTableName>tb_identification</RefTableName>
+      <RefColNames>identification_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="339" parent="238" name="fk_shop_delivery_mode">
+      <ColNames>delivery_mode_id</ColNames>
+      <RefSchemaName>o2o</RefSchemaName>
+      <RefTableName>tb_delivery_mode</RefTableName>
+      <RefColNames>delivery_mode_id</RefColNames>
+    </foreign-key>
+    <column id="340" parent="239" name="comment_id">
+      <Position>1</Position>
+      <DataType>int(100)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="341" parent="239" name="user_id">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="342" parent="239" name="shop_id">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="343" parent="239" name="content">
+      <Position>4</Position>
+      <DataType>varchar(1024)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="344" parent="239" name="time">
+      <Position>5</Position>
+      <DataType>timestamp|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="345" parent="239" name="fk_comment_user_idx">
+      <ColNames>user_id</ColNames>
+    </index>
+    <index id="346" parent="239" name="fk_comment_shop_idx">
+      <ColNames>shop_id</ColNames>
+    </index>
+    <key id="347" parent="239" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>comment_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="348" parent="239" name="fk_comment_user">
+      <ColNames>user_id</ColNames>
+      <RefSchemaName>o2o</RefSchemaName>
+      <RefTableName>tb_user</RefTableName>
+      <RefColNames>user_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="349" parent="239" name="fk_comment_shop">
+      <ColNames>shop_id</ColNames>
+      <RefSchemaName>o2o</RefSchemaName>
+      <RefTableName>tb_shop</RefTableName>
+      <RefColNames>shop_id</RefColNames>
+    </foreign-key>
+    <column id="350" parent="240" name="shop_support_id">
       <Position>1</Position>
       <DataType>int(100)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="283" parent="236" name="product_name">
+    <column id="351" parent="240" name="shop_id">
       <Position>2</Position>
-      <DataType>varchar(100)|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="284" parent="236" name="product_desc">
-      <Position>3</Position>
-      <DataType>varchar(2000)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="285" parent="236" name="img_addr">
-      <Position>4</Position>
-      <DataType>varchar(2000)|0</DataType>
-      <DefaultExpression>&apos;&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="286" parent="236" name="normal_price">
-      <Position>5</Position>
-      <DataType>varchar(100)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="287" parent="236" name="promotion_price">
-      <Position>6</Position>
-      <DataType>varchar(100)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="288" parent="236" name="priority">
-      <Position>7</Position>
-      <DataType>int(2)|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="289" parent="236" name="create_time">
-      <Position>8</Position>
-      <DataType>datetime|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="290" parent="236" name="last_edit_time">
-      <Position>9</Position>
-      <DataType>datetime|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="291" parent="236" name="enable_status">
-      <Position>10</Position>
-      <DataType>int(2)|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="292" parent="236" name="product_category_id">
-      <Position>11</Position>
-      <DataType>int(11)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="293" parent="236" name="shop_id">
-      <Position>12</Position>
       <DataType>int(10)|0</DataType>
       <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="294" parent="236" name="fk_product_procate">
-      <ColNames>product_category_id</ColNames>
-    </index>
-    <index id="295" parent="236" name="fk_product_shop">
+    <column id="352" parent="240" name="support_id">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="353" parent="240" name="fk_shop_id_idx">
       <ColNames>shop_id</ColNames>
     </index>
-    <key id="296" parent="236" name="PRIMARY">
+    <index id="354" parent="240" name="fk_support_id_idx">
+      <ColNames>support_id</ColNames>
+    </index>
+    <key id="355" parent="240" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>product_id</ColNames>
+      <ColNames>shop_support_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="297" parent="236" name="fk_product_procate">
-      <ColNames>product_category_id</ColNames>
-      <RefSchemaName>o2o</RefSchemaName>
-      <RefTableName>tb_product_category</RefTableName>
-      <RefColNames>product_category_id</RefColNames>
-    </foreign-key>
-    <foreign-key id="298" parent="236" name="fk_product_shop">
+    <foreign-key id="356" parent="240" name="fk_shop_id">
       <ColNames>shop_id</ColNames>
       <RefSchemaName>o2o</RefSchemaName>
       <RefTableName>tb_shop</RefTableName>
       <RefColNames>shop_id</RefColNames>
     </foreign-key>
-    <column id="299" parent="237" name="product_category_id">
+    <foreign-key id="357" parent="240" name="fk_support_id">
+      <ColNames>support_id</ColNames>
+      <RefSchemaName>o2o</RefSchemaName>
+      <RefTableName>tb_support</RefTableName>
+      <RefColNames>support_id</RefColNames>
+    </foreign-key>
+    <column id="358" parent="241" name="type_id">
       <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="359" parent="241" name="is_in_serving">
+      <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="300" parent="237" name="product_category_name">
-      <Position>2</Position>
-      <DataType>varchar(100)|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="301" parent="237" name="priority">
-      <Position>3</Position>
-      <DataType>int(2)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="302" parent="237" name="create_time">
-      <Position>4</Position>
-      <DataType>datetime|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="303" parent="237" name="shop_id">
-      <Position>5</Position>
-      <DataType>int(10)|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="304" parent="237" name="fk_procate_shop">
-      <ColNames>shop_id</ColNames>
-    </index>
-    <key id="305" parent="237" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>product_category_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="306" parent="237" name="fk_procate_shop">
-      <ColNames>shop_id</ColNames>
-      <RefSchemaName>o2o</RefSchemaName>
-      <RefTableName>tb_shop</RefTableName>
-      <RefColNames>shop_id</RefColNames>
-    </foreign-key>
-    <column id="307" parent="238" name="product_img_id">
-      <Position>1</Position>
-      <DataType>int(20)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="308" parent="238" name="img_addr">
-      <Position>2</Position>
-      <DataType>varchar(2000)|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="309" parent="238" name="img_desc">
+    <column id="360" parent="241" name="description">
       <Position>3</Position>
-      <DataType>varchar(2000)|0</DataType>
+      <DataType>varchar(1024)|0</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="310" parent="238" name="priority">
+    <column id="361" parent="241" name="title">
       <Position>4</Position>
-      <DataType>int(2)|0</DataType>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <DataType>varchar(20)|0</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="311" parent="238" name="create_time">
+    <column id="362" parent="241" name="link">
       <Position>5</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>varchar(1024)|0</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="312" parent="238" name="product_id">
-      <Position>6</Position>
-      <DataType>int(20)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="313" parent="238" name="fk_proimg_product">
-      <ColNames>product_id</ColNames>
-    </index>
-    <key id="314" parent="238" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>product_img_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="315" parent="238" name="fk_proimg_product">
-      <ColNames>product_id</ColNames>
-      <RefSchemaName>o2o</RefSchemaName>
-      <RefTableName>tb_product</RefTableName>
-      <RefColNames>product_id</RefColNames>
-    </foreign-key>
-    <column id="316" parent="239" name="shop_id">
-      <Position>1</Position>
-      <DataType>int(10)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="317" parent="239" name="owner_id">
-      <Position>2</Position>
-      <Comment>店铺创始人</Comment>
-      <DataType>int(10)|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="318" parent="239" name="area_id">
-      <Position>3</Position>
-      <DataType>int(5)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="319" parent="239" name="shop_category_id">
-      <Position>4</Position>
-      <DataType>int(11)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="320" parent="239" name="shop_name">
-      <Position>5</Position>
-      <DataType>varchar(256)|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="321" parent="239" name="shop_desc">
+    <column id="363" parent="241" name="image_url">
       <Position>6</Position>
       <DataType>varchar(1024)|0</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="322" parent="239" name="shop_addr">
+    <column id="364" parent="241" name="icon_url">
       <Position>7</Position>
-      <DataType>varchar(200)|0</DataType>
+      <DataType>varchar(1024)|0</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="323" parent="239" name="phone">
+    <column id="365" parent="241" name="title_color">
       <Position>8</Position>
-      <DataType>varchar(128)|0</DataType>
+      <DataType>varchar(10)|0</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="324" parent="239" name="shop_img">
+    <column id="366" parent="241" name="_v">
       <Position>9</Position>
-      <DataType>varchar(1024)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="325" parent="239" name="priority">
-      <Position>10</Position>
-      <DataType>int(3)|0</DataType>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="326" parent="239" name="create_time">
-      <Position>11</Position>
-      <DataType>datetime|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="327" parent="239" name="last_edit_time">
-      <Position>12</Position>
-      <DataType>datetime|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="328" parent="239" name="enable_status">
-      <Position>13</Position>
-      <DataType>int(2)|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="329" parent="239" name="advice">
-      <Position>14</Position>
-      <DataType>varchar(255)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="330" parent="239" name="fk_shop_profile">
-      <ColNames>owner_id</ColNames>
-    </index>
-    <index id="331" parent="239" name="fk_shop_area">
-      <ColNames>area_id</ColNames>
-    </index>
-    <index id="332" parent="239" name="fk_shop_shopcate">
-      <ColNames>shop_category_id</ColNames>
-    </index>
-    <key id="333" parent="239" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>shop_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="334" parent="239" name="fk_shop_profile">
-      <ColNames>owner_id</ColNames>
-      <RefSchemaName>o2o</RefSchemaName>
-      <RefTableName>tb_person_info</RefTableName>
-      <RefColNames>user_id</RefColNames>
-    </foreign-key>
-    <foreign-key id="335" parent="239" name="fk_shop_area">
-      <ColNames>area_id</ColNames>
-      <RefSchemaName>o2o</RefSchemaName>
-      <RefTableName>tb_area</RefTableName>
-      <RefColNames>area_id</RefColNames>
-    </foreign-key>
-    <foreign-key id="336" parent="239" name="fk_shop_shopcate">
-      <ColNames>shop_category_id</ColNames>
-      <RefSchemaName>o2o</RefSchemaName>
-      <RefTableName>tb_shop_category</RefTableName>
-      <RefColNames>shop_category_id</RefColNames>
-    </foreign-key>
-    <column id="337" parent="240" name="shop_category_id">
-      <Position>1</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="338" parent="240" name="shop_category_name">
-      <Position>2</Position>
-      <DataType>varchar(100)|0</DataType>
+      <DataType>varchar(45)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="339" parent="240" name="shop_category_desc">
-      <Position>3</Position>
-      <DataType>varchar(1000)|0</DataType>
-      <DefaultExpression>&apos;&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="340" parent="240" name="shop_category_img">
-      <Position>4</Position>
-      <DataType>varchar(2000)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="341" parent="240" name="priority">
-      <Position>5</Position>
-      <DataType>int(2)|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="342" parent="240" name="create_time">
-      <Position>6</Position>
-      <DataType>datetime|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="343" parent="240" name="last_edit_time">
-      <Position>7</Position>
-      <DataType>datetime|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="344" parent="240" name="parent_id">
-      <Position>8</Position>
-      <DataType>int(11)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="345" parent="240" name="fk_shop_category_self">
-      <ColNames>parent_id</ColNames>
-    </index>
-    <key id="346" parent="240" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>shop_category_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="347" parent="240" name="fk_shop_category_self">
-      <ColNames>parent_id</ColNames>
-      <RefSchemaName>o2o</RefSchemaName>
-      <RefTableName>tb_shop_category</RefTableName>
-      <RefColNames>shop_category_id</RefColNames>
-    </foreign-key>
-    <column id="348" parent="241" name="wechat_auth_id">
-      <Position>1</Position>
-      <DataType>int(10)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="349" parent="241" name="user_id">
-      <Position>2</Position>
-      <DataType>int(10)|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="350" parent="241" name="open_id">
-      <Position>3</Position>
-      <DataType>varchar(1024)|0</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="351" parent="241" name="create_time">
-      <Position>4</Position>
-      <DataType>datetime|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="352" parent="241" name="open_id">
-      <ColNames>open_id</ColNames>
+    <index id="367" parent="241" name="int_UNIQUE">
+      <ColNames>type_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="353" parent="241" name="fk_wechatauth_profile">
-      <ColNames>user_id</ColNames>
-    </index>
-    <key id="354" parent="241" name="PRIMARY">
+    <key id="368" parent="241" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>wechat_auth_id</ColNames>
+      <ColNames>type_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="355" parent="241" name="open_id">
-      <ColNames>open_id</ColNames>
-      <UnderlyingIndexName>open_id</UnderlyingIndexName>
+    <key id="369" parent="241" name="int_UNIQUE">
+      <ColNames>type_id</ColNames>
+      <UnderlyingIndexName>int_UNIQUE</UnderlyingIndexName>
     </key>
-    <foreign-key id="356" parent="241" name="fk_wechatauth_profile">
+    <column id="370" parent="242" name="support_id">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="371" parent="242" name="icon_color">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;999999&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="372" parent="242" name="icon_name">
+      <Position>3</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;保&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="373" parent="242" name="description">
+      <Position>4</Position>
+      <DataType>varchar(1024)|0</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="374" parent="242" name="name">
+      <Position>5</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;外卖保&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="375" parent="242" name="_id">
+      <Position>6</Position>
+      <DataType>varchar(1024)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="376" parent="242" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>support_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="377" parent="243" name="user_id">
+      <Position>1</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="378" parent="243" name="user_name">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="379" parent="243" name="_id">
+      <Position>3</Position>
+      <DataType>varchar(1024)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="380" parent="243" name="password">
+      <Position>4</Position>
+      <DataType>varchar(1024)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="381" parent="243" name="phone">
+      <Position>5</Position>
+      <DataType>varchar(45)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="382" parent="243" name="profile_photo_path">
+      <Position>6</Position>
+      <DataType>varchar(1024)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="383" parent="243" name="age">
+      <Position>7</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="384" parent="243" name="_id_UNIQUE">
+      <ColNames>_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="385" parent="243" name="phone_UNIQUE">
+      <ColNames>phone</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="386" parent="243" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
       <ColNames>user_id</ColNames>
-      <RefSchemaName>o2o</RefSchemaName>
-      <RefTableName>tb_person_info</RefTableName>
-      <RefColNames>user_id</RefColNames>
-    </foreign-key>
+      <Primary>1</Primary>
+    </key>
+    <key id="387" parent="243" name="_id_UNIQUE">
+      <ColNames>_id</ColNames>
+      <UnderlyingIndexName>_id_UNIQUE</UnderlyingIndexName>
+    </key>
+    <key id="388" parent="243" name="phone_UNIQUE">
+      <ColNames>phone</ColNames>
+      <UnderlyingIndexName>phone_UNIQUE</UnderlyingIndexName>
+    </key>
   </database-model>
 </dataSource>
