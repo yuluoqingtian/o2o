@@ -95,3 +95,18 @@ spring-web.xml
     4. 若想在级联中的collection中映射，实体类需实现Serializable接口，并具有相应的getter，setter
     5. 联级查询中的同名问题
     
+    
+    
+### 后台完成获取一次性验证码接口
+    1. 解决Can't create output stream！
+    在使用ImageIO进行图片写操作时，默认会使用缓存目录:${tomcat}/temp有些生产环境的tomcat，会将temp目录删除，因此报错
+    目前可以使用的解决办法
+        1. ImageIO默认是使用缓存目录，可以通过ImageIO.setUseCache(false)来设置，更改缓存策略，不使用文件目录缓存，使用内存缓存
+        2. 通过ImageIO.setCacheDirectory(cacheDirectory);设置任意的、存在的缓存目录
+    
+    2. 参考网站
+    工具类 [https://blog.csdn.net/doublezsx/article/details/79938035]
+    controller层 [https://blog.csdn.net/qq_39544768/article/details/86625353]
+                                               
+
+    
