@@ -107,6 +107,21 @@ spring-web.xml
     2. 参考网站
     工具类 [https://blog.csdn.net/doublezsx/article/details/79938035]
     controller层 [https://blog.csdn.net/qq_39544768/article/details/86625353]
+    
+### 实用ON DUPLICATE KEY UPDATE。实现mysql 有则更新，无则插入
+https://blog.csdn.net/definitly/article/details/82969245
+```xml
+ <insert id="addSessionCaptcha" useGeneratedKeys="true"
+            keyProperty="sessionId" keyColumn="session_id">
+
+        INSERT INTO
+        o2o.tb_session_captcha(session_id,captcha)
+        VALUES
+        (#{sessionId},#{captcha})
+        ON DUPLICATE KEY UPDATE
+        captcha = #{captcha}
+    </insert>
+```
                                                
 
     

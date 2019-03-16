@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org.dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bill.o2o.dao.CaptchaDao">
+    <insert id="addSessionCaptcha" useGeneratedKeys="true"
+            keyProperty="sessionId" keyColumn="session_id">
+
+        INSERT INTO
+        o2o.tb_session_captcha(session_id,captcha)
+        VALUES
+        (#{sessionId},#{captcha})
+        ON DUPLICATE KEY UPDATE
+        captcha = #{captcha}
+    </insert>
+
+
+    <select id="checkSessionAndCaptcha" resultType="java.lang.Integer" >
+        SELECT COUNT(*) FROM o2o.tb_session_captcha
+        WHERE session_id = #{sessionId}
+        AND captcha = #{captcha}
+    </select>
+</mapper>
