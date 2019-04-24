@@ -13,6 +13,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User checkAndReturnUser(String userName, String password) {
-       return userDao.cheUserAndPassword(userName,password);
+       return userDao.checkUserAndPassword(userName,password);
+    }
+
+    @Override
+    public User getUserByPhoneNumber(String phoneNumber) {
+        return userDao.getUserByPhoneNumber(phoneNumber);
+    }
+
+    @Override
+    public int insertUser(User user) {
+        return userDao.insertUser(user);
     }
 }

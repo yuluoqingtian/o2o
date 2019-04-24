@@ -122,6 +122,11 @@ https://blog.csdn.net/definitly/article/details/82969245
         captcha = #{captcha}
     </insert>
 ```
+
+
+
+### Postman的Post请求方式的四种类型的数据
+https://www.jianshu.com/p/98372ea70b08
                                                
 
     

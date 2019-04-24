@@ -59,15 +59,8 @@ public class ShopController {
 
         try {
             List<ShopReturnData> shopReturnDataList = shopService.getShopListByKeyword(keyword);
-            if (shopReturnDataList.size()==0){
-                resultMap.put("code","2");
-                resultMap.put("keyword",keyword);
-                resultMap.put("message","没有与"+keyword+"相关的商家哦");
-
-            }else {
                 resultMap.put("code","0");
                 resultMap.put("data",shopReturnDataList);
-            }
         }catch (Exception e){
             resultMap.put("code","1");
             resultMap.put("message","查询失败");

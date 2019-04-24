@@ -4,9 +4,20 @@
         "http://mybatis.org.dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bill.o2o.dao.UserDao">
-    <select id="cheUserAndPassword" resultType="com.bill.o2o.entity.User">
+    <select id="checkUserAndPassword" resultType="com.bill.o2o.entity.User">
         SELECT * FROM o2o.tb_user
         WHERE user_name = #{userName}
         AND password = #{password}
     </select>
+
+    <select id="getUserByPhoneNumber" resultType="com.bill.o2o.entity.User">
+        SELECT * FROM o2o.tb_user
+        WHERE phone = #{phoneNumber}
+    </select>
+
+    <insert id="insertUser" keyProperty="user.userId" keyColumn="user_id">
+        INSERT INTO o2o.tb_user
+        (user_name,phone) values
+        (#{user.userName},#{user.phone})
+    </insert>
 </mapper>

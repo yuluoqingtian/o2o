@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org.dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.bill.o2o.dao.CookiesDao">
+    <insert id="addCookie" useGeneratedKeys="true"
+            keyProperty="userName" keyColumn="user_name">
+
+        INSERT INTO
+        o2o.tb_user_cookies(user_name,user_cookie,password_cookie)
+        VALUES
+        (#{userName},#{userCookie},#{passwordCookie})
+        ON DUPLICATE KEY UPDATE
+        user_cookie = #{userCookie},
+        password_cookie = #{passwordCookie}
+    </insert>
+
+
+    <select id="checkCookie" resultType="com.bill.o2o.entity.User" >
+        SELECT * FROM o2o.tb_user
+        WHERE user_name in (
+            select user_name from o2o.tb_user_cookies
+        where user_cookie = #{userCookie}
+        AND password_cookie = #{passwordCookie}
+        )
+    </select>
+
+    <delete id="deleteCookiesByUserName" >
+        delete from o2o.tb_user_cookies  where user_name = #{userName}
+    </delete>
+</mapper>

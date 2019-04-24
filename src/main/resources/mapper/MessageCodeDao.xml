@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org.dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bill.o2o.dao.MessageCodeDao">
+    <insert id="savePhoneNumberAndCode" keyColumn="phone_number" useGeneratedKeys="true" keyProperty="phoneNumber">
+        INSERT INTO
+        o2o.tb_phone_code(phone_number,message_code)
+        VALUES
+        (#{phoneNumber},#{messageCode})
+        ON DUPLICATE KEY UPDATE
+        message_code = #{messageCode}
+    </insert>
+
+    <select id="checkPhoneNumberAndCode" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM o2o.tb_phone_code
+        WHERE phone_number = #{phoneNumber}
+        AND message_code = #{messageCode}
+    </select>
+</mapper>
